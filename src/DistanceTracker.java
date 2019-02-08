@@ -1,4 +1,6 @@
-public class DistanceTracker{
+import java.util.Comparator;
+
+public class DistanceTracker implements Comparator<DistanceTracker>{
 	
 	int x;
 	int y;
@@ -17,6 +19,15 @@ public class DistanceTracker{
 		 
 		
 	 }
+
+	 @Override
+		public int compare(DistanceTracker o1, DistanceTracker o2) {
+			// TODO Auto-generated method stub
+			if(o1.d > o2.d)
+				return(1);
+			return 0;
+		}
+		
 	
 	
 }

@@ -1,8 +1,9 @@
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
-public class Point{
+public class Point implements Comparator<DistanceTracker>{
 	
 	int x;
 	int y;
@@ -29,6 +30,14 @@ public class Point{
 	    double cb = Math.abs(b.x - a.x);
 	         
 	    return Math.hypot(ac, cb);
+	}
+
+	@Override
+	public int compare(DistanceTracker o1, DistanceTracker o2) {
+		// TODO Auto-generated method stub
+		if(o1.d > o2.d)
+			return(1);
+		return 0;
 	}
 	
 	
