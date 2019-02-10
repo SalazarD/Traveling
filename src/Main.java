@@ -3,12 +3,27 @@ import java.util.ArrayList;
 
 public class Main {
 
+	static Point A = new Point(1,1);
+	static Point B = new Point(3,3);
+	static Point C = new Point(6,6);
+	static Point D = new Point(8,8);
 	static ArrayList<Point> points = new ArrayList<Point>();
 	static ArrayList<Point> ordered = new ArrayList<Point>();
 	
+	
 public static void main(String[] args){
+	points.add(A);
+	points.add(B);
+	points.add(C);
+	points.add(D);
 	startup();
-	System.out.println(points);
+	for(int i = 0; i < points.size(); i++){
+		System.out.println(points.get(i).x);
+		System.out.println(points.get(i).y);
+		System.out.println(points.get(i).list.get(0).d);
+		System.out.println(points.get(i).list.get(1).d);
+		System.out.println(points.get(i).list.get(2).d);
+	}
 	
 	findFirstTwo(); 
 	Point temp;

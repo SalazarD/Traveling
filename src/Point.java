@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Point implements Comparator<DistanceTracker>{
+public class Point {
 	
 	int x;
 	int y;
@@ -32,13 +32,6 @@ public class Point implements Comparator<DistanceTracker>{
 	    return Math.hypot(ac, cb);
 	}
 
-	@Override
-	public int compare(DistanceTracker o1, DistanceTracker o2) {
-		// TODO Auto-generated method stub
-		if(o1.d > o2.d)
-			return(1);
-		return 0;
-	}
 	
 	
 	

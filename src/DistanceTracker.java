@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class DistanceTracker implements Comparator<DistanceTracker>{
+public class DistanceTracker implements Comparable<DistanceTracker>{
 	
 	int x;
 	int y;
@@ -14,20 +14,16 @@ public class DistanceTracker implements Comparator<DistanceTracker>{
 		this.d = d;
 	}
 	
-	 public double compareTo(DistanceTracker a){
-		 return a.d;
+	 public int compareTo(DistanceTracker a){
+		 if(this.d == a.d)
+			 return 0;
+		 if(this.d > a.d)
+			 return 1;
+		 return -1;
 		 
 		
 	 }
 
-	 @Override
-		public int compare(DistanceTracker o1, DistanceTracker o2) {
-			// TODO Auto-generated method stub
-			if(o1.d > o2.d)
-				return(1);
-			return 0;
-		}
-		
 	
 	
 }
