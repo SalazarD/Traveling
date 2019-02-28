@@ -68,6 +68,35 @@ public static void startup(){
 //find the shortest distance between two points and add them to ordered list and remove them from the distance trackers
 public static void findFirstTwo(){
 	//TODO
+	//check for smallest number in distance trackers
+	DistanceTracker temp = points.get(0).distances.get(0);
+	Point p1 = points.get(0);
+	Point p2 = findPoint(points.get(0).distances.get(0).x , points.get(0).distances.get(0).y);
+	for (int i = 1; i < points.size(); i++){
+		if(points.get)
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+}
+
+public static Point findPoint(int x, int y){
+	for (int i = 0; i < points.size(); i++){
+		if(points.get(i).x == x && points.get(i).y == y)
+			return points.get(i);
+	}
+	//
+	// SHOULD RETURN ERROR BUT FOR NOW JUST SOME POINT
+	//
+	return points.get(0);
+	
+	
 }
 
 //remove a point from all distance trackers

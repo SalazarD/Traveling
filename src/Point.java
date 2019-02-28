@@ -7,7 +7,7 @@ public class Point {
 	
 	int x;
 	int y;
-	ArrayList<DistanceTracker> list = new ArrayList<DistanceTracker>();
+	ArrayList<DistanceTracker> distances = new ArrayList<DistanceTracker>();
 	
 	Point(int x, int y){
 		this.x = x;
@@ -18,9 +18,9 @@ public class Point {
 	//Must fill array "distance" with points listed by closest distance
 	public void fillDistance(ArrayList<Point> points){
 		for(int i = 0; i < points.size(); i++){
-			list.add(new DistanceTracker(points.get(i).x, points.get(i).y, distance(this, points.get(i))));
+			distances.add(new DistanceTracker(points.get(i).x, points.get(i).y, distance(this, points.get(i))));
 		}
-		Collections.sort(list);
+		Collections.sort(distances);
 	}
 	//standard distance function
 	public double distance(Point a, Point b){
