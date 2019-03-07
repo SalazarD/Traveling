@@ -17,12 +17,13 @@ public static void main(String[] args){
 	points.add(C);
 	points.add(D);
 	startup();
+	//Testing
 	for(int i = 0; i < points.size(); i++){
 		System.out.println(points.get(i).x);
 		System.out.println(points.get(i).y);
-		System.out.println(points.get(i).list.get(0).d);
-		System.out.println(points.get(i).list.get(1).d);
-		System.out.println(points.get(i).list.get(2).d);
+		System.out.println(points.get(i).distances.get(0).d);
+		System.out.println(points.get(i).distances.get(1).d);
+		System.out.println(points.get(i).distances.get(2).d);
 	}
 	
 	findFirstTwo(); 
@@ -63,29 +64,27 @@ public static void startup(){
 	
 }
 
-
-
 //find the shortest distance between two points and add them to ordered list and remove them from the distance trackers
 public static void findFirstTwo(){
 	//TODO
 	//check for smallest number in distance trackers
-	DistanceTracker temp = points.get(0).distances.get(0);
+	double temp = points.get(0).distances.get(0).d;
 	Point p1 = points.get(0);
 	Point p2 = findPoint(points.get(0).distances.get(0).x , points.get(0).distances.get(0).y);
 	for (int i = 1; i < points.size(); i++){
-		if(points.get)
-		
-		
-		
+		if(points.get(i).distances.get(0).d < temp){
+			p1 = points.get(i);
+			p2 = findPoint(p1.distances.get(0).x , points.get(0).distances.get(0).y);
+		}	
 	}
 	
-	
-	
-	
-	
-	
+	ordered.add(p1);
+	ordered.add(p2);
+	removePoint(p1);
+	removePoint(p2);
 }
 
+//return the point with corresponding x and y
 public static Point findPoint(int x, int y){
 	for (int i = 0; i < points.size(); i++){
 		if(points.get(i).x == x && points.get(i).y == y)
@@ -98,6 +97,8 @@ public static Point findPoint(int x, int y){
 	
 	
 }
+
+
 
 //remove a point from all distance trackers
 public static void removePoint(Point a){
