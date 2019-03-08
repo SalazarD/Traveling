@@ -104,7 +104,7 @@ public static Point findPoint(int x, int y){
 
 //remove a point from all distance trackers
 public static void removePoint(Point a){
-	//TODO
+	
 	//loop through both ordered and points because we aren't sure 
 	//if changing a point in "points" changes the same point in "ordered"
 	for (int i = 0; i < points.size(); i++){
@@ -114,7 +114,13 @@ public static void removePoint(Point a){
 		}
 	}
 	
-	
+	for (int i = 0; i < ordered.size(); i++){
+		for(int j = 0; j < ordered.get(i).distances.size(); j++){
+			if(ordered.get(i).distances.get(j).x == a.x && ordered.get(i).distances.get(j).y == a.y)
+				ordered.get(i).distances.remove(j);
+		}
+	}
+		
 }
 
 //from the points in "ordered" return the closest point
