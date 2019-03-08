@@ -17,7 +17,8 @@ public static void main(String[] args){
 	points.add(C);
 	points.add(D);
 	startup();
-	//Testing
+	
+	////////////Testing
 	for(int i = 0; i < points.size(); i++){
 		System.out.println(points.get(i).x);
 		System.out.println(points.get(i).y);
@@ -25,6 +26,7 @@ public static void main(String[] args){
 		System.out.println(points.get(i).distances.get(1).d);
 		System.out.println(points.get(i).distances.get(2).d);
 	}
+	/////////
 	
 	findFirstTwo(); 
 	Point temp;
@@ -103,6 +105,16 @@ public static Point findPoint(int x, int y){
 //remove a point from all distance trackers
 public static void removePoint(Point a){
 	//TODO
+	//loop through both ordered and points because we aren't sure 
+	//if changing a point in "points" changes the same point in "ordered"
+	for (int i = 0; i < points.size(); i++){
+		for(int j = 0; j < points.get(i).distances.size(); j++){
+			if(points.get(i).distances.get(j).x == a.x && points.get(i).distances.get(j).y == a.y)
+				points.get(i).distances.remove(j);
+		}
+	}
+	
+	
 }
 
 //from the points in "ordered" return the closest point
