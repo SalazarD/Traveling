@@ -125,7 +125,15 @@ public static void removePoint(Point a){
 
 //from the points in "ordered" return the closest point
 public static Point selectNextPoint(){
-	return points.get(0);
+	double temp = ordered.get(0).distances.get(0).d;
+	Point p1 = findPoint(ordered.get(0).distances.get(0).x , ordered.get(0).distances.get(0).y);
+	
+	for (int i = 0; i < ordered.size(); i++){
+		if(ordered.get(i).distances.get(0).d < temp){
+			p1 = findPoint(ordered.get(i).distances.get(0).x , ordered.get(i).distances.get(0).y);
+		}	
+	}
+	return p1;
 }
 
 //add point to ordered and remove the overwritten line
