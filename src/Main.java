@@ -1,5 +1,9 @@
 import java.awt.List;
 import java.util.ArrayList;
+import java.awt.geom.Line2D;
+
+
+
 
 public class Main {
 
@@ -12,6 +16,10 @@ public class Main {
 	
 	
 public static void main(String[] args){
+	/*
+	 * Need to make a clean way to mass enter points (perhsp taking a textfile?
+	 */
+	
 	points.add(A);
 	points.add(B);
 	points.add(C);
@@ -130,7 +138,8 @@ public static Point selectNextPoint(){
 	
 	for (int i = 0; i < ordered.size(); i++){
 		if(ordered.get(i).distances.get(0).d < temp){
-			p1 = findPoint(ordered.get(i).distances.get(0).x , ordered.get(i).distances.get(0).y);
+			p1 = ordered.get(i);
+			temp = ordered.get(i).distances.get(0).d;
 		}	
 	}
 	return p1;
@@ -139,6 +148,57 @@ public static Point selectNextPoint(){
 //add point to ordered and remove the overwritten line
 public static void addPointToOrdered(Point a){
 	//TODO
+	// a is the point from which we are going out
+	// add is the point that we are adding to ordered
+	//From the two points adjacent to a decide which is closer to add without crossing
+	
+	Point add = findPoint(a.distances.get(0).x , a.distances.get(0).y);
+	
+	
+	// find index of a in ordered
+	int aI = 0;
+	
+	for (int i = 0; i < ordered.size(); i++){
+		if(ordered.get(i).x == a.x && ordered.get(i).y == a.y)
+			aI = i;
+	}
+	
+	
+	// use that to find index of points adjacent to a
+	
+	// find the closer one
+	Point closer;
+	Point other;
+	if(ordered.get(0).distance(ordered.get(aI-1), add) > ordered.get(0).distance(ordered.get(aI+1), add)){
+		closer = ordered.get(aI+1);
+		other = ordered.get(aI-1);
+	}
+	closer = ordered.get(aI-1);
+	other = ordered.get(aI+1);
+	
+	
+	// check if add -> closer crosses 
+	
+	boolean cross;
+	
+	
+	
+	// if cross check other and use
+	
+	
+	int index;
+	
+	// add point accordingly if index is < or > a
+	
+	//if (index of a > closer)  
+	//		ordered.add(indexof(a), add) 
+	//else(order.add(indexof(a) + 1, add)     // You may need to check for the case that we are adding to the end of the list
+	//
+	
+	
+	
+	
+	
 }
 
 //output results in a nice and easy to read way
