@@ -197,9 +197,21 @@ public static void addPointToOrdered(Point a){
 	
 	
 	
-	
+	//For future reference: you may have to check if it crosses all lines not just the adjacent lines
 	
 }
+
+
+
+
+
+
+public static boolean doTheyCross(double x1,double y1,double x2, double y2){
+	
+	
+	return true;
+}
+
 
 //output results in a nice and easy to read way
 public static void outputResults(){
