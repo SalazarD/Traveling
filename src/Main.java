@@ -8,16 +8,16 @@ import java.awt.geom.Line2D;
 public class Main {
 
 	static Point A = new Point(1,1);
-	static Point B = new Point(3,3);
-	static Point C = new Point(6,6);
-	static Point D = new Point(8,8);
+	static Point B = new Point(4,4);
+	static Point C = new Point(5,5);
+	static Point D = new Point(7,7);
 	static ArrayList<Point> points = new ArrayList<Point>();
 	static ArrayList<Point> ordered = new ArrayList<Point>();
 	
 	
 public static void main(String[] args){
 	/*
-	 * Need to make a clean way to mass enter points (perhsp taking a textfile?
+	 * Need to make a clean way to mass enter points (perhaps taking a textfile?)
 	 */
 	
 	points.add(A);
@@ -26,17 +26,24 @@ public static void main(String[] args){
 	points.add(D);
 	startup();
 	
+	
+// startup is correct and tested
+// find first two is correct and tested
+	
+	
+	findFirstTwo(); 
+	
+	System.out.println("FIRST TWO");
 	////////////Testing
-	for(int i = 0; i < points.size(); i++){
-		System.out.println(points.get(i).x);
-		System.out.println(points.get(i).y);
-		System.out.println(points.get(i).distances.get(0).d);
-		System.out.println(points.get(i).distances.get(1).d);
-		System.out.println(points.get(i).distances.get(2).d);
+	for(int i = 0; i < ordered.size(); i++){
+		System.out.println(ordered.get(i).x);
+		System.out.println(ordered.get(i).y);
+	
 	}
 	/////////
 	
-	findFirstTwo(); 
+	
+	
 	Point temp;
 	while(ordered.size() < points.size()){
 		
@@ -83,9 +90,12 @@ public static void findFirstTwo(){
 	Point p2 = findPoint(points.get(0).distances.get(0).x , points.get(0).distances.get(0).y);
 	for (int i = 1; i < points.size(); i++){
 		if(points.get(i).distances.get(0).d < temp){
+			
+			temp = points.get(i).distances.get(0).d;
 			p1 = points.get(i);
-			p2 = findPoint(p1.distances.get(0).x , points.get(0).distances.get(0).y);
+			p2 = findPoint(p1.distances.get(0).x , p1.distances.get(0).y);
 		}	
+		
 	}
 	
 	ordered.add(p1);
@@ -115,14 +125,14 @@ public static void removePoint(Point a){
 	
 	//loop through both ordered and points because we aren't sure 
 	//if changing a point in "points" changes the same point in "ordered"
-	for (int i = 0; i < points.size(); i++){
+	for (int i = 0; i < points.size() - 1; i++){
 		for(int j = 0; j < points.get(i).distances.size(); j++){
 			if(points.get(i).distances.get(j).x == a.x && points.get(i).distances.get(j).y == a.y)
 				points.get(i).distances.remove(j);
 		}
 	}
 	
-	for (int i = 0; i < ordered.size(); i++){
+	for (int i = 0; i < ordered.size() - 1; i++){
 		for(int j = 0; j < ordered.get(i).distances.size(); j++){
 			if(ordered.get(i).distances.get(j).x == a.x && ordered.get(i).distances.get(j).y == a.y)
 				ordered.get(i).distances.remove(j);
