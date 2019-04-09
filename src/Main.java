@@ -29,7 +29,7 @@ public static void main(String[] args){
 	
 // startup is correct and tested
 // find first two is correct and tested
-	
+// Select Next Point is correct and tested 
 	
 	findFirstTwo(); 
 	
@@ -48,6 +48,11 @@ public static void main(String[] args){
 	while(ordered.size() < points.size()){
 		
 		temp = selectNextPoint(); //Next point to be added
+		
+		System.out.println("NEXT POINT");
+		System.out.println(temp.x);
+		System.out.println(temp.y);
+		
 		addPointToOrdered(temp); //Add point to current graph and trim overwritten lines
 		removePoint(temp); //remove temp from all distance tracker lists
 			
@@ -147,9 +152,11 @@ public static Point selectNextPoint(){
 	Point p1 = findPoint(ordered.get(0).distances.get(0).x , ordered.get(0).distances.get(0).y);
 	
 	for (int i = 0; i < ordered.size(); i++){
+		
 		if(ordered.get(i).distances.get(0).d < temp){
-			p1 = ordered.get(i);
+			p1 = findPoint(ordered.get(i).distances.get(0).x, ordered.get(i).distances.get(0).y);
 			temp = ordered.get(i).distances.get(0).d;
+			
 		}	
 	}
 	return p1;
