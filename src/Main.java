@@ -13,54 +13,56 @@ public class Main {
 	static Point D = new Point(7,7);
 	static ArrayList<Point> points = new ArrayList<Point>();
 	static ArrayList<Point> ordered = new ArrayList<Point>();
-	
-	
+
+
 public static void main(String[] args){
 	/*
 	 * Need to make a clean way to mass enter points (perhaps taking a textfile?)
 	 */
-	
+
 	points.add(A);
 	points.add(B);
 	points.add(C);
 	points.add(D);
 	startup();
-	
-	
+
+
 // startup is correct and tested
 // find first two is correct and tested
-// Select Next Point is correct and tested 
-	
-	findFirstTwo(); 
-	
+// Select Next Point is correct and tested
+
+	findFirstTwo();
+
 	System.out.println("FIRST TWO");
 	////////////Testing
 	for(int i = 0; i < ordered.size(); i++){
 		System.out.println(ordered.get(i).x);
 		System.out.println(ordered.get(i).y);
-	
+
 	}
 	/////////
-	
-	
-	
+
+
+
 	Point temp;
 	while(ordered.size() < points.size()){
-		
+
 		temp = selectNextPoint(); //Next point to be added
-		
+
 		System.out.println("NEXT POINT");
 		System.out.println(temp.x);
 		System.out.println(temp.y);
-		
+
 		addPointToOrdered(temp); //Add point to current graph and trim overwritten lines
 		removePoint(temp); //remove temp from all distance tracker lists
-			
+
 	}
-	
+
+  System.out.println("Do They Cross: " + doTheyCross(A,B,C,D));
+
 	outputResults();
-	
-	
+
+
 }
 
 
@@ -68,22 +70,22 @@ public static void main(String[] args){
 public static void startup(){
 	//this loops should send a list of points to the fill distance function for every point [i]
 	for (int i = 0; i < points.size(); i++){
-		
+
 		ArrayList<Point> temp = new ArrayList<Point>();
-		
+
 		for (int j = 0; j < points.size(); j++){
 			if(points.get(i) == points.get(j)){
 				continue;
 			}
 			else{
 				temp.add(points.get(j));
-			}	
+			}
 		}
 			points.get(i).fillDistance(temp);
 	}
-	
-	
-	
+
+
+
 }
 
 //find the shortest distance between two points and add them to ordered list and remove them from the distance trackers
@@ -95,14 +97,14 @@ public static void findFirstTwo(){
 	Point p2 = findPoint(points.get(0).distances.get(0).x , points.get(0).distances.get(0).y);
 	for (int i = 1; i < points.size(); i++){
 		if(points.get(i).distances.get(0).d < temp){
-			
+
 			temp = points.get(i).distances.get(0).d;
 			p1 = points.get(i);
 			p2 = findPoint(p1.distances.get(0).x , p1.distances.get(0).y);
-		}	
-		
+		}
+
 	}
-	
+
 	ordered.add(p1);
 	ordered.add(p2);
 	removePoint(p1);
@@ -119,16 +121,16 @@ public static Point findPoint(int x, int y){
 	// SHOULD RETURN ERROR BUT FOR NOW JUST SOME POINT
 	//
 	return points.get(0);
-	
-	
+
+
 }
 
 
 
 //remove a point from all distance trackers
 public static void removePoint(Point a){
-	
-	//loop through both ordered and points because we aren't sure 
+
+	//loop through both ordered and points because we aren't sure
 	//if changing a point in "points" changes the same point in "ordered"
 	for (int i = 0; i < points.size() - 1; i++){
 		for(int j = 0; j < points.get(i).distances.size(); j++){
@@ -136,28 +138,27 @@ public static void removePoint(Point a){
 				points.get(i).distances.remove(j);
 		}
 	}
-	
+
 	for (int i = 0; i < ordered.size() - 1; i++){
 		for(int j = 0; j < ordered.get(i).distances.size(); j++){
 			if(ordered.get(i).distances.get(j).x == a.x && ordered.get(i).distances.get(j).y == a.y)
 				ordered.get(i).distances.remove(j);
 		}
 	}
-		
+
 }
 
 //from the points in "ordered" return the closest point
 public static Point selectNextPoint(){
 	double temp = ordered.get(0).distances.get(0).d;
 	Point p1 = findPoint(ordered.get(0).distances.get(0).x , ordered.get(0).distances.get(0).y);
-	
+
 	for (int i = 0; i < ordered.size(); i++){
-		
+
 		if(ordered.get(i).distances.get(0).d < temp){
 			p1 = findPoint(ordered.get(i).distances.get(0).x, ordered.get(i).distances.get(0).y);
 			temp = ordered.get(i).distances.get(0).d;
-			
-		}	
+		}
 	}
 	return p1;
 }
@@ -168,21 +169,21 @@ public static void addPointToOrdered(Point a){
 	// a is the point from which we are going out
 	// add is the point that we are adding to ordered
 	//From the two points adjacent to a decide which is closer to add without crossing
-	
+
 	Point add = findPoint(a.distances.get(0).x , a.distances.get(0).y);
-	
-	
+
+
 	// find index of a in ordered
 	int aI = 0;
-	
+
 	for (int i = 0; i < ordered.size(); i++){
 		if(ordered.get(i).x == a.x && ordered.get(i).y == a.y)
 			aI = i;
 	}
-	
-	
+
+
 	// use that to find index of points adjacent to a
-	
+
 	// find the closer one
 	Point closer;
 	Point other;
@@ -192,41 +193,56 @@ public static void addPointToOrdered(Point a){
 	}
 	closer = ordered.get(aI-1);
 	other = ordered.get(aI+1);
-	
-	
-	// check if add -> closer crosses 
-	
+
+
+	// check if add -> closer crosses
+
 	boolean cross;
-	
-	
-	
+
+
+
 	// if cross check other and use
-	
-	
+
+
 	int index;
-	
+
 	// add point accordingly if index is < or > a
-	
-	//if (index of a > closer)  
-	//		ordered.add(indexof(a), add) 
+
+	//if (index of a > closer)
+	//		ordered.add(indexof(a), add)
 	//else(order.add(indexof(a) + 1, add)     // You may need to check for the case that we are adding to the end of the list
 	//
-	
-	
-	
+
+
+
 	//For future reference: you may have to check if it crosses all lines not just the adjacent lines
-	
+
 }
 
 
 
 
 
+public static int orientation(Point p, Point q, Point r) {
+    double val = (q.getY() - p.getY()) * (r.getX() - q.getX())
+            - (q.getX() - p.getX()) * (r.getY() - q.getY());
 
-public static boolean doTheyCross(double x1,double y1,double x2, double y2){
-	
-	
-	return true;
+    if (val == 0.0)
+        return 0; // colinear
+    return (val > 0) ? 1 : 2; // clock or counterclock wise
+}
+
+public static boolean doTheyCross(Point startA, Point endA, Point startB, Point endB){
+  int o1 = orientation(startA, startB, endA);
+  int o2 = orientation(startA, startB, endB);
+  int o3 = orientation(endA, endB, startA);
+  int o4 = orientation(endA, endB, startB);
+
+  if (o1 != o2 && o3 != o4)
+      return true;
+
+  return false;
+
 }
 
 
@@ -235,5 +251,3 @@ public static void outputResults(){
 	//TODO
 }
 }
-
-
