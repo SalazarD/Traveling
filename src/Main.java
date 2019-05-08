@@ -163,13 +163,13 @@ public static Point selectNextPoint(){
 }
 
 //add point to ordered and remove the overwritten line
-public static void addPointToOrdered(Point a){
+public static void addPointToOrdered(Point add){
 	//TODO
 	// a is the point from which we are going out
 	// add is the point that we are adding to ordered
 	//From the two points adjacent to a decide which is closer to add without crossing
 
-	Point add = findPoint(a.distances.get(0).x , a.distances.get(0).y);
+	Point a = findPoint(add.distances.get(0).x , add.distances.get(0).y); 
 
 
 	// find index of a in ordered
@@ -184,21 +184,32 @@ public static void addPointToOrdered(Point a){
 	// use that to find index of points adjacent to a
 
 	// find the closer one
+	//index of closer and other
+	int cI, oI = 0;
 	Point closer;
 	Point other;
 	if(ordered.get(0).distance(ordered.get(aI-1), add) > ordered.get(0).distance(ordered.get(aI+1), add)){
 		closer = ordered.get(aI+1);
 		other = ordered.get(aI-1);
+		cI = aI+1;
+		oI = aI-1;
 	}
+	else{
 	closer = ordered.get(aI-1);
 	other = ordered.get(aI+1);
+	cI = aI-1;
+	oI = aI+1;
+	}
 
 
 	// check if add -> closer crosses
-
-	boolean cross;
-
-
+	// add accordingly in correct direction
+	if(doTheyCross(add, closer, a, other)){
+		//a -> add -> other
+	}
+	else{
+		//a -> add -> closer
+	}
 
 	// if cross check other and use
 
