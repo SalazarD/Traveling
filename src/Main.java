@@ -205,28 +205,28 @@ public static void addPointToOrdered(Point add){
 	// check if add -> closer crosses
 	// add accordingly in correct direction
 	if(doTheyCross(add, closer, a, other)){
-		//a -> add -> other
+		
+		if(oI < aI){ // other -> add -> a 
+			ordered.add(oI, add);
+		}
+		else{ //a -> add -> other
+			ordered.add(aI, add);	
+		}
+		
+		
 	}
+	
 	else{
-		//a -> add -> closer
+		if(cI < aI){ //closer -> add -> a
+			ordered.add(cI, add);
+		}
+		else{ // a -> add -> closer
+			ordered.add(aI, add);
+		}
 	}
 
-	// if cross check other and use
-
-
-	int index;
-
-	// add point accordingly if index is < or > a
-
-	//if (index of a > closer)
-	//		ordered.add(indexof(a), add)
-	//else(order.add(indexof(a) + 1, add)     // You may need to check for the case that we are adding to the end of the list
-	//
-
-
-
+	
 	//For future reference: you may have to check if it crosses all lines not just the adjacent lines
-
 }
 
 
