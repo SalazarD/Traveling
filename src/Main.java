@@ -8,9 +8,8 @@ import java.awt.geom.Line2D;
 public class Main {
 
 	static Point A = new Point(1,1);
-	static Point B = new Point(4,4);
-	static Point C = new Point(5,5);
-	static Point D = new Point(7,7);
+	static Point B = new Point(2,2);
+	static Point C = new Point(2,1);
 	static ArrayList<Point> points = new ArrayList<Point>();
 	static ArrayList<Point> ordered = new ArrayList<Point>();
 
@@ -23,7 +22,6 @@ public static void main(String[] args){
 	points.add(A);
 	points.add(B);
 	points.add(C);
-	points.add(D);
 	startup();
 
 
@@ -35,15 +33,15 @@ public static void main(String[] args){
 
 	System.out.println("FIRST TWO");
 	////////////Testing
-	for(int i = 0; i < ordered.size(); i++){
-		System.out.println(ordered.get(i).x);
-		System.out.println(ordered.get(i).y);
+	//for(int i = 0; i < ordered.size(); i++){
+		//System.out.println(ordered.get(i).x);
+		//System.out.println(ordered.get(i).y);
 
-	}
+	//}
 	/////////
 
-  System.out.println("Do They Cross: " + doTheyCross(A,B,C,D));
-  System.out.println("Do They Cross: " + doTheyCross(A,C,B,D));
+  //System.out.println("Do They Cross: " + doTheyCross(A,B,C,D));
+  //System.out.println("Do They Cross: " + doTheyCross(A,C,B,D));
 
 	Point temp;
 	while(ordered.size() < points.size()){
@@ -59,6 +57,11 @@ public static void main(String[] args){
 
 	}
 
+	for(int i = 0; i < ordered.size(); i++){
+		System.out.println(ordered.get(i).x);
+		System.out.println(ordered.get(i).y);
+
+	}
 	outputResults();
 
 
@@ -179,12 +182,16 @@ public static void addPointToOrdered(Point add){
 		if(ordered.get(i).x == a.x && ordered.get(i).y == a.y)
 			aI = i;
 	}
-
-
+	
+	
+	
+	
+	
 	// use that to find index of points adjacent to a
 
 	// find the closer one
 	//index of closer and other
+	//NEED CASE FOR WHEN aI = 0
 	int cI, oI = 0;
 	Point closer;
 	Point other;
@@ -201,6 +208,7 @@ public static void addPointToOrdered(Point add){
 	oI = aI+1;
 	}
 
+	System.out.print("HERE");//TEST 
 
 	// check if add -> closer crosses
 	// add accordingly in correct direction
