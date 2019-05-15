@@ -10,6 +10,7 @@ public class Main {
 	static Point A = new Point(1,1);
 	static Point B = new Point(2,2);
 	static Point C = new Point(2,1);
+
 	static ArrayList<Point> points = new ArrayList<Point>();
 	static ArrayList<Point> ordered = new ArrayList<Point>();
 
@@ -33,12 +34,12 @@ public static void main(String[] args){
 
 	System.out.println("FIRST TWO");
 	////////////Testing
-	//for(int i = 0; i < ordered.size(); i++){
-		//System.out.println(ordered.get(i).x);
-		//System.out.println(ordered.get(i).y);
+	for(int i = 0; i < ordered.size(); i++){
+		System.out.println(ordered.get(i).x);
+		System.out.println(ordered.get(i).y);
 
-	//}
-	/////////
+	}
+	
 
   //System.out.println("Do They Cross: " + doTheyCross(A,B,C,D));
   //System.out.println("Do They Cross: " + doTheyCross(A,C,B,D));
@@ -48,9 +49,9 @@ public static void main(String[] args){
 
 		temp = selectNextPoint(); //Next point to be added
 
-		System.out.println("NEXT POINT");
-		System.out.println(temp.x);
-		System.out.println(temp.y);
+		//System.out.println("NEXT POINT");
+		//System.out.println(temp.x);
+		//System.out.println(temp.y);
 
 		addPointToOrdered(temp); //Add point to current graph and trim overwritten lines
 		removePoint(temp); //remove temp from all distance tracker lists
@@ -58,6 +59,7 @@ public static void main(String[] args){
 	}
 
 	for(int i = 0; i < ordered.size(); i++){
+		System.out.println("i = " + i);
 		System.out.println(ordered.get(i).x);
 		System.out.println(ordered.get(i).y);
 
@@ -191,27 +193,69 @@ public static void addPointToOrdered(Point add){
 
 	// find the closer one
 	//index of closer and other
-	//NEED CASE FOR WHEN aI = 0
+	//NEED CASE FOR WHEN aI = 0 or aI = last element in list
 	int cI, oI = 0;
 	Point closer;
 	Point other;
-	if(ordered.get(0).distance(ordered.get(aI-1), add) > ordered.get(0).distance(ordered.get(aI+1), add)){
-		closer = ordered.get(aI+1);
-		other = ordered.get(aI-1);
-		cI = aI+1;
-		oI = aI-1;
+	
+	if(aI == ordered.size() - 1){
+		if(ordered.get(0).distance(ordered.get(aI-1), add) >= ordered.get(0).distance(ordered.get(0), add)){
+			closer = ordered.get(0);
+			other = ordered.get(aI-1);
+			cI = 0;
+			oI = aI-1;
+		}
+		else{
+			other = ordered.get(0);
+			closer = ordered.get(aI-1);
+			oI = 0;
+			cI = aI-1;
+		}
+		
 	}
 	else{
-	closer = ordered.get(aI-1);
-	other = ordered.get(aI+1);
-	cI = aI-1;
-	oI = aI+1;
+		if(aI == 0){
+			if(ordered.get(0).distance(ordered.get(ordered.size()-1), add) >= ordered.get(0).distance(ordered.get(aI+1), add)){
+				closer = ordered.get(aI + 1);
+				other = ordered.get(ordered.size()-1);
+				cI = aI+1;
+				oI = ordered.size()-1;
+			}
+			else{
+				other = ordered.get(aI + 1);
+				closer = ordered.get(ordered.size()-1);
+				oI = aI+1;
+				cI = ordered.size()-1;
+			}
+	
+		}
+		else { //not an edge case
+		
+	
+			if(ordered.get(0).distance(ordered.get(aI-1), add) >= ordered.get(0).distance(ordered.get(aI+1), add)){
+				closer = ordered.get(aI+1);
+				other = ordered.get(aI-1);
+				cI = aI+1;
+				oI = aI-1;
+			}
+			else{
+				closer = ordered.get(aI-1);
+				other = ordered.get(aI+1);
+				cI = aI-1;
+				oI = aI+1;
+			}
+		}
 	}
 
 	System.out.print("HERE");//TEST 
 
+	
+	
+	
+	
 	// check if add -> closer crosses
 	// add accordingly in correct direction
+	System.out.println("Adding: " + add.x + " ," + add.y);
 	if(doTheyCross(add, closer, a, other)){
 		
 		if(oI < aI){ // other -> add -> a 
