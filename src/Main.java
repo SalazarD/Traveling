@@ -49,9 +49,9 @@ public static void main(String[] args){
 
 		temp = selectNextPoint(); //Next point to be added
 
-		//System.out.println("NEXT POINT");
-		//System.out.println(temp.x);
-		//System.out.println(temp.y);
+		System.out.println("NEXT POINT");
+		System.out.println(temp.x);
+		System.out.println(temp.y);
 
 		addPointToOrdered(temp); //Add point to current graph and trim overwritten lines
 		removePoint(temp); //remove temp from all distance tracker lists
@@ -130,7 +130,7 @@ public static Point findPoint(int x, int y){
 }
 
 
-
+//IT APPEARS REMOVE POINT NEEDS TO BE TESTED FURTHER
 //remove a point from all distance trackers
 public static void removePoint(Point a){
 
