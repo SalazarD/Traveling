@@ -41,8 +41,9 @@ public static void main(String[] args){
 	}
 	
 
-  //System.out.println("Do They Cross: " + doTheyCross(A,B,C,D));
-  //System.out.println("Do They Cross: " + doTheyCross(A,C,B,D));
+	System.out.println("- distances -");
+	System.out.println(ordered.get(0).distances.get(0).x + " , " + ordered.get(0).distances.get(0).y);
+	System.out.println(ordered.get(1).distances.get(0).x + " , " + ordered.get(1).distances.get(0).y);
 
 	Point temp;
 	while(ordered.size() < points.size()){
@@ -57,13 +58,14 @@ public static void main(String[] args){
 		removePoint(temp); //remove temp from all distance tracker lists
 
 	}
-
+	/*
 	for(int i = 0; i < ordered.size(); i++){
 		System.out.println("i = " + i);
 		System.out.println(ordered.get(i).x);
 		System.out.println(ordered.get(i).y);
 
 	}
+	*/
 	outputResults();
 
 
@@ -149,6 +151,7 @@ public static void removePoint(Point a){
 				ordered.get(i).distances.remove(j);
 		}
 	}
+	
 
 }
 
